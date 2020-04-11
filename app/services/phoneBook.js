@@ -1,10 +1,6 @@
 function phone(string, num) {
-  const name_regx = string.match(/[<](.*?)[>]/g)
-  const adress_regx1 = string.match(/\s[a-zA-Z].+/g)
-  const adress_regx2 = string.match(/[>](\s\w.+)/g)
   const phone_numbers = string.match(/\+[0-9]{1,2}[-][0-9]+[-][0-9]+[-][0-9]+/g)
-  let found = [],
-      response = ""
+  let found = [], response = ""
   phone_numbers.find((phone_number) => {
     if(phone_number.replace('+','') == num){
       found.push(phone_number)
@@ -35,15 +31,15 @@ function phone(string, num) {
           addresses.push(address[0].replace(telephone[0], '').replace('_', ' ').replace('; ', '').replace('$ ', '').trim())
         }
         else if(address3 != null){
-          addresses.push(address3[0].replace('<', '').replace('>', '').replace('_', ' ').replace(telephone[0], '').replace('; ', '').replace('$ ', '').trim())
+          addresses.push(address3[0].replace(telephone[0], '').replace(/[^A-Za-z0-9]/g, ' ').trim())
         }
 
         if(address1 != null){
-          addresses.push(address1[0].replace('<', '').replace('>', '').replace('_', ' ').replace(telephone[0], '').replace('; ', '').replace('$ ', '').trim())
+          addresses.push(address1[0].replace('>', '').replace(telephone[0], '').replace('; ', '').replace('$ ', '').trim())
         }
 
         if(address2 != null){
-          addresses.push(address2[0].replace('<', '').replace('>', '').replace('_', ' ').replace(telephone[0], '').replace('; ', '').replace('$ ', '').trim())
+          addresses.push(address2[0].replace('>', '').replace(telephone[0], '').replace('; ', '').trim())
         }
 
       }
